@@ -36,8 +36,11 @@ export default class King extends Piece {
 			for (let piece of this.enemyPlayer.activePieces) {
 				if (piece.piece === this.board.pieces.PAWN) {
 					let attackingSquares = piece.getAttackingMoves();
-					if (attackingSquares[0][0] === possibleMoves[i][0] && attackingSquares[0][1] === possibleMoves[i][1] ||
-						attackingSquares[1][0] === possibleMoves[i][0] && attackingSquares[1][1] === possibleMoves[i][1]) {
+					if (attackingSquares[0][0] === possibleMoves[i][0] && 
+						attackingSquares[0][1] === possibleMoves[i][1] ||
+						attackingSquares[1][0] === possibleMoves[i][0] && 
+						attackingSquares[1][1] === possibleMoves[i][1]) {
+
 						possibleMoves.splice(i, 1);
 						continue loopKingsMoves;
 
@@ -63,6 +66,21 @@ export default class King extends Piece {
 			}
 			
 		}
+
+		loopAttackingMoves:
+		for (let i = attackingMoves.length - 1; i >= 0; i--) {
+			for (let piece of this.enemyPlayer.activePieces) {
+				let enemyMoves = piece.getCheckingMoves();
+				for (let move of enemyMoves) {
+					if (attackingMoves[i][0][0] === move[0] &&
+						attackingMoves[i][0][1] === move[1]) {
+						attackingMoves.splice(i,1);
+						continue loopAttackingMoves;
+					}
+				}
+			}
+		}
+
 		return [possibleMoves, attackingMoves]
 	}
 }

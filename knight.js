@@ -43,4 +43,19 @@ export default class Knight extends Piece {
 		}
 		return [possibleMoves, attackingMoves]
 	}	
+
+	getCheckingMoves () {
+		let moves = []
+
+		possibleMoves.push([this.currentCoordinates[0]+1, this.currentCoordinates[1]+2]);
+		possibleMoves.push([this.currentCoordinates[0]+2, this.currentCoordinates[1]+1]);
+		possibleMoves.push([this.currentCoordinates[0]+2, this.currentCoordinates[1]-1]);
+		possibleMoves.push([this.currentCoordinates[0]+1, this.currentCoordinates[1]-2]);
+		possibleMoves.push([this.currentCoordinates[0]-1, this.currentCoordinates[1]-2]);
+		possibleMoves.push([this.currentCoordinates[0]-2, this.currentCoordinates[1]-1]);
+		possibleMoves.push([this.currentCoordinates[0]-2, this.currentCoordinates[1]+1]);
+		possibleMoves.push([this.currentCoordinates[0]-1, this.currentCoordinates[1]+2]);
+
+		return moves;
+	}
 }
