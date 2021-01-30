@@ -36,6 +36,8 @@ export default class Piece {
 
 		this.firstMove = false;
 
+
+		// Enemy Player's turn
 		for (let piece of this.player.activePieces) {
 			piece.cssElement.removeEventListener('click', piece)
 		}

@@ -100,7 +100,6 @@ export default class Rook extends Piece {
 				possibleMoves.push([i, this.currentCoordinates[1]]);
 			}
 		}
-		console.log([possibleMoves, attackingMoves])
 		return [possibleMoves, attackingMoves];
 	}
 }

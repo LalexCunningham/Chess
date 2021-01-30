@@ -26,13 +26,13 @@ export default class Knight extends Piece {
 				possibleMoves.splice(i, 1);
 				continue;
 			}
-			for (piece of this.player.activePieces) {
+			for (let piece of this.player.activePieces) {
 				if (piece.currentCoordinates[0] === possibleMoves[i][0] && piece.currentCoordinates[1] === possibleMoves[i][1]) {
 					possibleMoves.splice(i, 1);
 					continue loopKnightsMoves;
 				}
 			}
-			for (piece of this.enemyPlayer.activePieces) {
+			for (let piece of this.enemyPlayer.activePieces) {
 				
 				if (piece.currentCoordinates[0] === possibleMoves[i][0] && piece.currentCoordinates[1] === possibleMoves[i][1]) {
 					attackingMoves.push([possibleMoves[i], piece]);
