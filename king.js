@@ -69,7 +69,7 @@ export default class King extends Piece {
 		loopAttackingMoves:
 		for (let i = attackingMoves.length - 1; i >= 0; i--) {
 			for (let piece of this.enemyPlayer.activePieces) {
-				if (piece.piece === this.board.pieces.QUEEN) {
+				if (piece.piece === this.board.pieces.ROOK) {
 					let enemyMoves = piece.getCheckingMoves();
 					for (let move of enemyMoves) {
 						if (attackingMoves[i][0][0] === move[0][0] &&
