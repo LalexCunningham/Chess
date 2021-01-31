@@ -84,4 +84,19 @@ export default class King extends Piece {
 
 		return [possibleMoves, attackingMoves]
 	}
+
+	getCheckingMoves () {
+		let moves = [];
+
+		moves.push([[this.currentCoordinates[0], this.currentCoordinates[1] + 1], this]);
+		moves.push([[this.currentCoordinates[0] + 1, this.currentCoordinates[1] + 1], this]);
+		moves.push([[this.currentCoordinates[0] + 1, this.currentCoordinates[1]], this]);
+		moves.push([[this.currentCoordinates[0] + 1, this.currentCoordinates[1] - 1], this]);
+		moves.push([[this.currentCoordinates[0], this.currentCoordinates[1] - 1], this]);
+		moves.push([[this.currentCoordinates[0] - 1, this.currentCoordinates[1] - 1], this]);
+		moves.push([[this.currentCoordinates[0] - 1, this.currentCoordinates[1]], this]);
+		moves.push([[this.currentCoordinates[0] - 1, this.currentCoordinates[1] + 1], this]);
+
+		return moves;
+	}
 }
