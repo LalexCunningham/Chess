@@ -54,7 +54,7 @@ export default class Pawn extends Piece {
 	}
 
 	// Special method for pawns to return what fields they could attack to
-	getAttackingMoves () {
+	getCheckingMoves () {
 		if (this.color === 'white') {
 			return [[this.currentCoordinates[0]+1, this.currentCoordinates[1]+1],[this.currentCoordinates[0]-1, this.currentCoordinates[1]+1]]		
 		} else if (this.color === 'black') {

@@ -211,4 +211,8 @@ export default class Queen extends Piece {
 		}
 		return [possibleMoves, attackingMoves];
 	}
+
+	getCheckingMoves () {
+		
+	}
 }

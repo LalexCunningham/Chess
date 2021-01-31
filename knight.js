@@ -47,14 +47,14 @@ export default class Knight extends Piece {
 	getCheckingMoves () {
 		let moves = []
 
-		possibleMoves.push([this.currentCoordinates[0]+1, this.currentCoordinates[1]+2]);
-		possibleMoves.push([this.currentCoordinates[0]+2, this.currentCoordinates[1]+1]);
-		possibleMoves.push([this.currentCoordinates[0]+2, this.currentCoordinates[1]-1]);
-		possibleMoves.push([this.currentCoordinates[0]+1, this.currentCoordinates[1]-2]);
-		possibleMoves.push([this.currentCoordinates[0]-1, this.currentCoordinates[1]-2]);
-		possibleMoves.push([this.currentCoordinates[0]-2, this.currentCoordinates[1]-1]);
-		possibleMoves.push([this.currentCoordinates[0]-2, this.currentCoordinates[1]+1]);
-		possibleMoves.push([this.currentCoordinates[0]-1, this.currentCoordinates[1]+2]);
+		moves.push([[this.currentCoordinates[0]+1, this.currentCoordinates[1]+2], this]);
+		moves.push([[this.currentCoordinates[0]+2, this.currentCoordinates[1]+1], this]);
+		moves.push([[this.currentCoordinates[0]+2, this.currentCoordinates[1]-1], this]);
+		moves.push([[this.currentCoordinates[0]+1, this.currentCoordinates[1]-2], this]);
+		moves.push([[this.currentCoordinates[0]-1, this.currentCoordinates[1]-2], this]);
+		moves.push([[this.currentCoordinates[0]-2, this.currentCoordinates[1]-1], this]);
+		moves.push([[this.currentCoordinates[0]-2, this.currentCoordinates[1]+1], this]);
+		moves.push([[this.currentCoordinates[0]-1, this.currentCoordinates[1]+2], this]);
 
 		return moves;
 	}
