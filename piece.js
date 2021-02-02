@@ -1,4 +1,5 @@
-import HighlightedSquare from './highlightedSquare.js';
+import MovingSquare from './movingSquare.js';
+import AttackingSquare from './attackingSquare.js';
 
 export default class Piece {
 	constructor(color, piece, currentCoordinates, id, board, player, enemyPlayer) {
@@ -54,11 +55,12 @@ export default class Piece {
 
 		this.board.highlightedPiece = this;
 		for (let coordinate of moveCoordinates) {
-			this.board.highlightedSquares.push(new HighlightedSquare(coordinate, this.board.moves.MOVE, this.board));
+			let movingSquare = new MovingSquare(coordinate, this.board, this);
+			this.board.highlightedSquares.push(movingSquare);
 		}
 		for (let coordinate of attackCoordinates) {
-			this.board.highlightedSquares.push(new HighlightedSquare(coordinate[0], this.board.moves.ATTACK, this.board));
-			//coordinate[3].attack();
+			let attackingSquare = new AttackingSquare(coordinate[0], this.board, this, coordinate[1]);
+			this.board.highlightedSquares.push(attackingSquare);
 		}
 	}
 

@@ -38,9 +38,7 @@ export default class Board {
 	clearHighlightedSquares () {
 		this.highlightedPiece = undefined;
 		for (let square of this.highlightedSquares) {
-			square.unstyleSquare();
-			square.cssElement.removeEventListener('click', square);
-			square.cssElement.removeEventListener('click', square);
+			square.removeOnClick();
 		}
 		this.highlightedSquares = [];
 	}	
