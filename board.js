@@ -14,6 +14,16 @@ export default class Board {
 			ATTACK: 'attack'
 		}	
 
+		this.pieceLocations = [
+					[null,null,null,null,null,null,null,null],
+					[null,null,null,null,null,null,null,null],
+					[null,null,null,null,null,null,null,null],
+					[null,null,null,null,null,null,null,null],
+					[null,null,null,null,null,null,null,null],
+					[null,null,null,null,null,null,null,null],
+					[null,null,null,null,null,null,null,null],
+					[null,null,null,null,null,null,null,null]]
+
 		this.pieceList = [];
 		this.highlightedSquares = [];
 		this.highlightedPiece;

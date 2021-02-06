@@ -1,6 +1,5 @@
 import Piece from './piece.js';
 
-
 export default class Bishop extends Piece {
 	constructor(color, currentCoordinates, id, board, player, enemyPlayer) {
 		super(color, board.pieces.BISHOP, currentCoordinates, id, board, player, enemyPlayer);

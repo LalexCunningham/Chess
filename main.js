@@ -143,4 +143,5 @@ var whitePlayer = new Player('white');
 var blackPlayer = new Player('black');
 
 setUpBoard();
+console.log(board);
 mainLoop();

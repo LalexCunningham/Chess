@@ -33,6 +33,7 @@ export default class Pawn extends Piece {
 		}
 
 		let attackingMoves = [];
+		/*
 		for (let piece of this.enemyPlayer.activePieces) {
 			if (attackingSquares[0][0] === piece.currentCoordinates[0] && attackingSquares[0][1] === piece.currentCoordinates[1]) {
 				attackingMoves.push([attackingSquares[0], piece]);
@@ -40,7 +41,20 @@ export default class Pawn extends Piece {
 				attackingMoves.push([attackingSquares[1], piece]);
 			}
 		}
-		// TODO: check pawn for same team
+		*/
+		for (let coordinate of attackingSquares) {
+			let square = this.board.pieceLocations[coordinate[0]-1][coordinate[1]-1]
+			if (square === null) {
+				continue;
+			} else if (square.color === this.color) {
+				continue;
+			} else {
+				attackingMoves.push([attackingSquares[attackingSquares.indexOf(coordinate)], square])
+			}
+		}
+		
+
+		/*
 		let conflictingMoves = [];
 		for (let move of possibleMoves) {
 			for (let piece of this.enemyPlayer.activePieces) {
@@ -48,8 +62,19 @@ export default class Pawn extends Piece {
 					possibleMoves = possibleMoves.slice(0, possibleMoves.indexOf(move))
 					break;
 				}
+			}	
+		}
+		*/
+		for (let coordinate of possibleMoves) {
+			let square = this.board.pieceLocations[coordinate[0]-1][coordinate[1]-1]
+			if (square === null) {
+				continue;
+			} else {
+				possibleMoves.slice(0, possibleMoves.indexOf(square))
+				break;
 			}
 		}
+
 		return [possibleMoves, attackingMoves];
 	}
 

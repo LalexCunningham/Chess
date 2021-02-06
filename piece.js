@@ -8,6 +8,7 @@ export default class Piece {
 		this.id = id;
 		this.piece = piece;	
 		this.currentCoordinates = [parseInt(currentCoordinates[0]), parseInt(currentCoordinates[1])];
+		this.board.pieceLocations[this.currentCoordinates[0]-1][this.currentCoordinates[1]-1] = this;
 		this.cssElement = this.placeCSSElement();
 
 		// TODO: get rid of player classes
@@ -26,6 +27,7 @@ export default class Piece {
 	}
 
 	move(coordinates) {
+		this.board.pieceLocations[this.currentCoordinates[0]-1][this.currentCoordinates[1]-1] = null;
 		let diffX = coordinates[0] - this.currentCoordinates[0];
 		let diffY = coordinates[1] - this.currentCoordinates[1];
 
@@ -34,7 +36,7 @@ export default class Piece {
 		this.cssElement.style.transform = `translate(${translationMatrix.m41 + ((diffX) * 72)}px, ${translationMatrix.m42 - ((diffY) * 72)}px)`;
 		
 		this.currentCoordinates = coordinates; 
-
+		this.board.pieceLocations[this.currentCoordinates[0]-1][this.currentCoordinates[1]-1] = this;
 		this.firstMove = false;
 
 
