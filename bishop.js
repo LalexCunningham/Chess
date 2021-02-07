@@ -16,27 +16,6 @@ export default class Bishop extends Piece {
 				break;
 			}
 
-			/*
-			for (let piece of this.player.activePieces) {
-				if (this.currentCoordinates[0] + i === piece.currentCoordinates[0] && this.currentCoordinates[1] + i === piece.currentCoordinates[1]) {
-					axisBlocked = true;
-					break;
-				}
-			}
-			if (!axisBlocked) {
-				for (let piece of this.enemyPlayer.activePieces) {
-					if (this.currentCoordinates[0] + i === piece.currentCoordinates[0] && this.currentCoordinates[1] + i === piece.currentCoordinates[1]) {
-						attackingMoves.push([[this.currentCoordinates[0]+i, this.currentCoordinates[1]+i], piece]);
-						axisBlocked = true;
-						break;
-					}
-					
-				}
-			}
-			if (!axisBlocked) {
-				possibleMoves.push([this.currentCoordinates[0]+i, this.currentCoordinates[1]+i])
-			}
-			*/
 			let square = this.board.pieceLocations[(this.currentCoordinates[0] + i) - 1][(this.currentCoordinates[1] + i) - 1]
 
 			if (square === null) {
@@ -55,27 +34,6 @@ export default class Bishop extends Piece {
 			if (this.currentCoordinates[0] + i > 8 || this.currentCoordinates[1] - i < 1) {
 				break;
 			}
-			/*
-			for (let piece of this.player.activePieces) {
-				if (this.currentCoordinates[0] + i === piece.currentCoordinates[0] && this.currentCoordinates[1] - i === piece.currentCoordinates[1]) {
-					axisBlocked = true;
-					break;
-				}
-			}
-			if (!axisBlocked) {
-				for (let piece of this.enemyPlayer.activePieces) {
-					if (this.currentCoordinates[0] + i === piece.currentCoordinates[0] && this.currentCoordinates[1] - i === piece.currentCoordinates[1]) {
-						attackingMoves.push([[this.currentCoordinates[0]+i, this.currentCoordinates[1] - i], piece]);
-						axisBlocked = true;
-						break;
-					}
-					
-				}
-			}
-			if (!axisBlocked) {
-				possibleMoves.push([this.currentCoordinates[0]+i, this.currentCoordinates[1] - i])
-			}
-			*/
 
 			let square = this.board.pieceLocations[(this.currentCoordinates[0] + i) - 1][(this.currentCoordinates[1] - i) - 1]
 
@@ -98,28 +56,6 @@ export default class Bishop extends Piece {
 				break;
 			}
 
-			/*
-			for (let piece of this.player.activePieces) {
-				if (this.currentCoordinates[0] - i === piece.currentCoordinates[0] && this.currentCoordinates[1] - i === piece.currentCoordinates[1]) {
-					axisBlocked = true;
-					break;
-				}
-			}
-			if (!axisBlocked) {
-				for (let piece of this.enemyPlayer.activePieces) {
-					if (this.currentCoordinates[0] - i === piece.currentCoordinates[0] && this.currentCoordinates[1] - i === piece.currentCoordinates[1]) {
-						attackingMoves.push([[this.currentCoordinates[0] - i, this.currentCoordinates[1] - i], piece]);
-						axisBlocked = true;
-						break;
-					}
-					
-				}
-			}
-			if (!axisBlocked) {
-				possibleMoves.push([this.currentCoordinates[0] - i, this.currentCoordinates[1] - i])
-			}
-			*/
-
 			let square = this.board.pieceLocations[(this.currentCoordinates[0] - i) - 1][(this.currentCoordinates[1] - i) - 1]
 
 			if (square === null) {
@@ -139,27 +75,7 @@ export default class Bishop extends Piece {
 			if (this.currentCoordinates[0] - i < 1 || this.currentCoordinates[1] + i > 8) {
 				break;
 			}
-			/*
-			for (let piece of this.player.activePieces) {
-				if (this.currentCoordinates[0] - i === piece.currentCoordinates[0] && this.currentCoordinates[1] + i === piece.currentCoordinates[1]) {
-					axisBlocked = true;
-					break;
-				}
-			}
-			if (!axisBlocked) {
-				for (let piece of this.enemyPlayer.activePieces) {
-					if (this.currentCoordinates[0] - i === piece.currentCoordinates[0] && this.currentCoordinates[1] + i === piece.currentCoordinates[1]) {
-						attackingMoves.push([[this.currentCoordinates[0] - i, this.currentCoordinates[1] + i], piece]);
-						axisBlocked = true;
-						break;
-					}
-					
-				}
-			}
-			if (!axisBlocked) {
-				possibleMoves.push([this.currentCoordinates[0] - i, this.currentCoordinates[1] + i])
-			}
-			*/
+
 			let square = this.board.pieceLocations[(this.currentCoordinates[0] - i) - 1][(this.currentCoordinates[1] + i) - 1]
 
 			if (square === null) {
@@ -186,21 +102,15 @@ export default class Bishop extends Piece {
 				break;
 			}
 
-			for (let piece of this.player.activePieces) {
-				if (this.currentCoordinates[0] + i === piece.currentCoordinates[0] && this.currentCoordinates[1] + i === piece.currentCoordinates[1]) {
-					moves.push([[this.currentCoordinates[0]+i, this.currentCoordinates[1]+i], piece]);
-					axisBlocked = true;
-					break;
-				}
-			}
-			if (!axisBlocked) {
-				for (let piece of this.enemyPlayer.activePieces) {
-					if (this.currentCoordinates[0] + i === piece.currentCoordinates[0] && this.currentCoordinates[1] + i === piece.currentCoordinates[1]) {
-						axisBlocked = true;
-						break;
-					}
-					
-				}
+			let square = this.board.pieceLocations[(this.currentCoordinates[0] + i) - 1][(this.currentCoordinates[1] + i) - 1]
+
+			if (square === null) {
+				moves.push([this.currentCoordinates[0]+i, this.currentCoordinates[1]+i])
+			} else if (square.color === this.color) {
+				moves.push([[this.currentCoordinates[0]+i, this.currentCoordinates[1]+i], square])
+				break;
+			} else {
+				break;
 			}
 			
 		}
@@ -211,21 +121,16 @@ export default class Bishop extends Piece {
 			if (this.currentCoordinates[0] + i > 8 || this.currentCoordinates[1] - i < 1) {
 				break;
 			}
-			for (let piece of this.player.activePieces) {
-				if (this.currentCoordinates[0] + i === piece.currentCoordinates[0] && this.currentCoordinates[1] - i === piece.currentCoordinates[1]) {
-					moves.push([[this.currentCoordinates[0]+i, this.currentCoordinates[1] - i], piece]);
-					axisBlocked = true;
-					break;
-				}
-			}
-			if (!axisBlocked) {
-				for (let piece of this.enemyPlayer.activePieces) {
-					if (this.currentCoordinates[0] + i === piece.currentCoordinates[0] && this.currentCoordinates[1] - i === piece.currentCoordinates[1]) {
-						axisBlocked = true;
-						break;
-					}
-					
-				}
+
+			let square = this.board.pieceLocations[(this.currentCoordinates[0] + i) - 1][(this.currentCoordinates[1] - i) - 1]
+
+			if (square === null) {
+				moves.push([this.currentCoordinates[0]+i, this.currentCoordinates[1] - i])
+			} else if (square.color === this.color) {
+				moves.push([[this.currentCoordinates[0]+i, this.currentCoordinates[1] - i], square])
+				break;
+			} else {
+				break;
 			}
 		}
 
@@ -236,21 +141,16 @@ export default class Bishop extends Piece {
 			if (this.currentCoordinates[0] - i < 1 || this.currentCoordinates[1] - i < 1) {
 				break;
 			}
-			for (let piece of this.player.activePieces) {
-				if (this.currentCoordinates[0] - i === piece.currentCoordinates[0] && this.currentCoordinates[1] - i === piece.currentCoordinates[1]) {
-					moves.push([[this.currentCoordinates[0] - i, this.currentCoordinates[1] - i], piece]);
-					axisBlocked = true;
-					break;
-				}
-			}
-			if (!axisBlocked) {
-				for (let piece of this.enemyPlayer.activePieces) {
-					if (this.currentCoordinates[0] - i === piece.currentCoordinates[0] && this.currentCoordinates[1] - i === piece.currentCoordinates[1]) {
-						axisBlocked = true;
-						break;
-					}
-					
-				}
+
+			let square = this.board.pieceLocations[(this.currentCoordinates[0] - i) - 1][(this.currentCoordinates[1] - i) - 1]
+
+			if (square === null) {
+				moves.push([this.currentCoordinates[0] - i, this.currentCoordinates[1] - i])
+			} else if (square.color === this.color) {
+				moves.push([[this.currentCoordinates[0] - i, this.currentCoordinates[1] - i], square])
+				break;
+			} else {
+				break;
 			}
 		}
 
@@ -260,21 +160,16 @@ export default class Bishop extends Piece {
 			if (this.currentCoordinates[0] - i < 1 || this.currentCoordinates[1] + i > 8) {
 				break;
 			}
-			for (let piece of this.player.activePieces) {
-				if (this.currentCoordinates[0] - i === piece.currentCoordinates[0] && this.currentCoordinates[1] + i === piece.currentCoordinates[1]) {
-					moves.push([[this.currentCoordinates[0] - i, this.currentCoordinates[1] + i], piece]);
-					axisBlocked = true;
-					break;
-				}
-			}
-			if (!axisBlocked) {
-				for (let piece of this.enemyPlayer.activePieces) {
-					if (this.currentCoordinates[0] - i === piece.currentCoordinates[0] && this.currentCoordinates[1] + i === piece.currentCoordinates[1]) {
-						axisBlocked = true;
-						break;
-					}
-					
-				}
+
+			let square = this.board.pieceLocations[(this.currentCoordinates[0] - i) - 1][(this.currentCoordinates[1] + i) - 1]
+
+			if (square === null) {
+				moves.push([this.currentCoordinates[0] - i, this.currentCoordinates[1] + i])
+			} else if (square.color === this.color) {
+				moves.push([[this.currentCoordinates[0] - i, this.currentCoordinates[1] + i], square])
+				break;
+			} else {
+				break;
 			}
 		}
 		return moves;
