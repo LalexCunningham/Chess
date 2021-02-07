@@ -27,57 +27,26 @@ export default class King extends Piece {
 				possibleMoves.splice(i, 1);
 				continue;
 			}
+
 			for (let piece of this.player.activePieces) {
 				if (piece.currentCoordinates[0] === possibleMoves[i][0] && piece.currentCoordinates[1] === possibleMoves[i][1]) {
 					possibleMoves.splice(i, 1);
 					continue loopKingsMoves;
 				}
 			}
-			for (let piece of this.enemyPlayer.activePieces) {
-				if (piece.piece === this.board.pieces.PAWN) {
-					let attackingSquares = piece.getCheckingMoves();
-					if (attackingSquares[0][0] === possibleMoves[i][0] && 
-						attackingSquares[0][1] === possibleMoves[i][1] ||
-						attackingSquares[1][0] === possibleMoves[i][0] && 
-						attackingSquares[1][1] === possibleMoves[i][1]) {
 
+			for (let piece of this.enemyPlayer.activePieces) {
+				for (let move of piece.getCheckingMoves()) {
+					if (move[0] === attackingMoves[0][0] &&
+						move[1] === attackingMoves[0][1]) {
 						possibleMoves.splice(i, 1);
 						continue loopKingsMoves;
 					}
-
-				} else if (piece.piece === this.board.pieces.KING) {
-						// Don't call getPossibleMoves because it will cause infinite recursion
-
-				} else {
-					let enemyMoves = piece.getPossibleMoves();
-					for (let move of enemyMoves[0]) {
-						if (move[0] === possibleMoves[i][0] && move[1] === possibleMoves[i][1]) {
-							possibleMoves.splice(i, 1);
-							continue loopKingsMoves;
-						}
-					}
 				}
-				
 				if (piece.currentCoordinates[0] === possibleMoves[i][0] && piece.currentCoordinates[1] === possibleMoves[i][1]) {
-					attackingMoves.push([possibleMoves[i], piece]);
+					attackingMoves.push([possibleMoves[i], piece])
 					possibleMoves.splice(i, 1);
 					continue loopKingsMoves;
-				}
-			}
-			
-		}
-		loopAttackingMoves:
-		for (let i = attackingMoves.length - 1; i >= 0; i--) {
-			for (let piece of this.enemyPlayer.activePieces) {
-				if (piece.piece === this.board.pieces.ROOK) {
-					let enemyMoves = piece.getCheckingMoves();
-					for (let move of enemyMoves) {
-						if (attackingMoves[i][0][0] === move[0][0] &&
-							attackingMoves[i][0][1] === move[0][1]) {
-							attackingMoves.splice(i,1);
-							continue loopAttackingMoves;
-						}
-					}
 				}
 			}
 		}
@@ -85,6 +54,7 @@ export default class King extends Piece {
 		return [possibleMoves, attackingMoves]
 	}
 
+	// Returns all moves that would put an enemy king into check
 	getCheckingMoves () {
 		let moves = [];
 
