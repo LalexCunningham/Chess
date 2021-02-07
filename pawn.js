@@ -32,7 +32,13 @@ export default class Pawn extends Piece {
 			}
 		}
 
-		let attackingMoves = [];
+		// Remove squares that are outside the board
+		for (let square of attackingSquares) {
+			if (square[0] < 1 || square[0] > 8 ||
+				square[1] < 1 || square[1] > 8 )
+				attackingSquares.splice(attackingSquares.indexOf(square), 1);
+		}
+		
 		/*
 		for (let piece of this.enemyPlayer.activePieces) {
 			if (attackingSquares[0][0] === piece.currentCoordinates[0] && attackingSquares[0][1] === piece.currentCoordinates[1]) {
@@ -42,6 +48,7 @@ export default class Pawn extends Piece {
 			}
 		}
 		*/
+		let attackingMoves = [];
 		for (let coordinate of attackingSquares) {
 			let square = this.board.pieceLocations[coordinate[0]-1][coordinate[1]-1]
 			if (square === null) {
