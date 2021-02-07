@@ -37,8 +37,8 @@ export default class King extends Piece {
 
 			for (let piece of this.enemyPlayer.activePieces) {
 				for (let move of piece.getCheckingMoves()) {
-					if (move[0] === attackingMoves[0][0] &&
-						move[1] === attackingMoves[0][1]) {
+					if (move[0] === possibleMoves[i][0] &&
+						move[1] === possibleMoves[i][1]) {
 						possibleMoves.splice(i, 1);
 						continue loopKingsMoves;
 					}
