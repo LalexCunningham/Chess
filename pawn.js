@@ -39,15 +39,6 @@ export default class Pawn extends Piece {
 				attackingSquares.splice(attackingSquares.indexOf(square), 1);
 		}
 		
-		/*
-		for (let piece of this.enemyPlayer.activePieces) {
-			if (attackingSquares[0][0] === piece.currentCoordinates[0] && attackingSquares[0][1] === piece.currentCoordinates[1]) {
-				attackingMoves.push([attackingSquares[0], piece]);
-			} else if (attackingSquares[1][0] === piece.currentCoordinates[0] && attackingSquares[1][1] === piece.currentCoordinates[1]) {
-				attackingMoves.push([attackingSquares[1], piece]);
-			}
-		}
-		*/
 		let attackingMoves = [];
 		for (let coordinate of attackingSquares) {
 			let square = this.board.pieceLocations[coordinate[0]-1][coordinate[1]-1]
@@ -60,24 +51,13 @@ export default class Pawn extends Piece {
 			}
 		}
 		
-
-		/*
-		let conflictingMoves = [];
-		for (let move of possibleMoves) {
-			for (let piece of this.enemyPlayer.activePieces) {
-				if (move[0] === piece.currentCoordinates[0] && move[1] === piece.currentCoordinates[1]) {
-					possibleMoves = possibleMoves.slice(0, possibleMoves.indexOf(move))
-					break;
-				}
-			}	
-		}
-		*/
 		for (let coordinate of possibleMoves) {
 			let square = this.board.pieceLocations[coordinate[0]-1][coordinate[1]-1]
 			if (square === null) {
 				continue;
 			} else {
-				possibleMoves.slice(0, possibleMoves.indexOf(square))
+				debugger;
+				possibleMoves.splice(possibleMoves.indexOf(coordinate), 1)
 				break;
 			}
 		}
@@ -85,7 +65,7 @@ export default class Pawn extends Piece {
 		return [possibleMoves, attackingMoves];
 	}
 
-	// Special method for pawns to return what fields they could attack to
+	// Returns all moves that would put an enemy king into check
 	getCheckingMoves () {
 		if (this.color === 'white') {
 			return [[this.currentCoordinates[0]+1, this.currentCoordinates[1]+1],[this.currentCoordinates[0]-1, this.currentCoordinates[1]+1]]		
