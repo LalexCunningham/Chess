@@ -168,184 +168,288 @@ export default class Queen extends Piece {
 		return [possibleMoves, attackingMoves];
 	}
 
+	// Returns all squares that would put an enemy king in check by this piece
 	getCheckingMoves () {
 		let moves = [];
 
-		// Move in positive Y
+		// Positive Y
 		let axisBlocked = false;
 		for (let i = this.currentCoordinates[1] + 1; i < 9; i++) {
-			for (let piece of this.player.activePieces) {
-				if (this.currentCoordinates[0] === piece.currentCoordinates[0] && i === piece.currentCoordinates[1]) {
-					moves.push([[this.currentCoordinates[0], i], piece])
-					axisBlocked = true;
-					break;
-				}
+
+			let coordinates = [this.currentCoordinates[0], i];
+			let square = this.board.pieceLocations[coordinates[0]][coordinates[1]];
+
+			if (square === null) {
+				moves.push(coordinates);
+			} else if (square.color === this.color) {
+				moves.push(coordinates);
+				break;
+			} else {
+				break;
 			}
-			if (!axisBlocked) {
-				for (let piece of this.enemyPlayer.activePieces) {
-					if (this.currentCoordinates[0] === piece.currentCoordinates[0] && i === piece.currentCoordinates[1]) {
-						axisBlocked = true;
-						break;
-					}
-				}
-			}
+			// for (let piece of this.player.activePieces) {
+			// 	if (this.currentCoordinates[0] === piece.currentCoordinates[0] && i === piece.currentCoordinates[1]) {
+			// 		moves.push([[this.currentCoordinates[0], i], piece])
+			// 		axisBlocked = true;
+			// 		break;
+			// 	}
+			// }
+			// if (!axisBlocked) {
+			// 	for (let piece of this.enemyPlayer.activePieces) {
+			// 		if (this.currentCoordinates[0] === piece.currentCoordinates[0] && i === piece.currentCoordinates[1]) {
+			// 			axisBlocked = true;
+			// 			break;
+			// 		}
+			// 	}
+			// }
 		}
 
-		// Move in positive X
+		// Positive X
 		axisBlocked = false;
 		for (let i = this.currentCoordinates[0] + 1; i < 9; i++) {
-			for (let piece of this.player.activePieces) {
-				if (this.currentCoordinates[1] === piece.currentCoordinates[1] && i === piece.currentCoordinates[0]) {
-					moves.push([[i, this.currentCoordinates[1]], piece])
-					axisBlocked = true;
-					break;
-				}
+			let coordinates = [i, this.currentCoordinates[1]];
+			let square = this.board.pieceLocations[coordinates[0]][coordinates[1]];
+
+			if (square === null) {
+				moves.push(coordinates);
+			} else if (square.color === this.color) {
+				moves.push(coordinates);
+				break;
+			} else {
+				break;
 			}
-			if (!axisBlocked) {
-				for (let piece of this.enemyPlayer.activePieces) {
-					if (this.currentCoordinates[1] === piece.currentCoordinates[1] && i === piece.currentCoordinates[0]) {
-						axisBlocked = true;
-						break;
-					}
-				}
-			}
+			// for (let piece of this.player.activePieces) {
+			// 	if (this.currentCoordinates[1] === piece.currentCoordinates[1] && i === piece.currentCoordinates[0]) {
+			// 		moves.push([[i, this.currentCoordinates[1]], piece])
+			// 		axisBlocked = true;
+			// 		break;
+			// 	}
+			// }
+			// if (!axisBlocked) {
+			// 	for (let piece of this.enemyPlayer.activePieces) {
+			// 		if (this.currentCoordinates[1] === piece.currentCoordinates[1] && i === piece.currentCoordinates[0]) {
+			// 			axisBlocked = true;
+			// 			break;
+			// 		}
+			// 	}
+			// }
 		}
 
-		// Move in negative Y
+		// Negative Y
 		axisBlocked = false;
 		for (let i = this.currentCoordinates[1] - 1; i > 0; i--) {
-			for (let piece of this.player.activePieces) {
-				if (this.currentCoordinates[0] === piece.currentCoordinates[0] && i === piece.currentCoordinates[1]) {
-					moves.push([[this.currentCoordinates[0], i], piece])
-					axisBlocked = true;
-					break;
-				}
+			let coordinates = [this.currentCoordinates[0], i];
+			let square = this.board.pieceLocations[coordinates[0]][coordinates[1]];
+
+			if (square === null) {
+				moves.push(coordinates);
+			} else if (square.color === this.color) {
+				moves.push(coordinates);
+				break;
+			} else {
+				break;
 			}
-			if (!axisBlocked) {
-				for (let piece of this.enemyPlayer.activePieces) {
-					if (this.currentCoordinates[0] === piece.currentCoordinates[0] && i === piece.currentCoordinates[1]) {
-						axisBlocked = true;
-						break;
-					}
-				}
-			}
+			// for (let piece of this.player.activePieces) {
+			// 	if (this.currentCoordinates[0] === piece.currentCoordinates[0] && i === piece.currentCoordinates[1]) {
+			// 		moves.push([[this.currentCoordinates[0], i], piece])
+			// 		axisBlocked = true;
+			// 		break;
+			// 	}
+			// }
+			// if (!axisBlocked) {
+			// 	for (let piece of this.enemyPlayer.activePieces) {
+			// 		if (this.currentCoordinates[0] === piece.currentCoordinates[0] && i === piece.currentCoordinates[1]) {
+			// 			axisBlocked = true;
+			// 			break;
+			// 		}
+			// 	}
+			// }
 		}
 
-		// Move in negative X
+		// Negative X
 		axisBlocked = false;
 		for (let i = this.currentCoordinates[0] - 1; i > 0; i--) {
-			for (let piece of this.player.activePieces) {
-				if (this.currentCoordinates[1] === piece.currentCoordinates[1] && i === piece.currentCoordinates[0]) {
-					moves.push([[i, this.currentCoordinates[1]], piece]);
-					axisBlocked = true;
-					break;
-				}
+			let coordinates = [i, this.currentCoordinates[1]];
+			let square = this.board.pieceLocations[coordinates[0]][coordinates[1]];
+
+			if (square === null) {
+				moves.push(coordinates);
+			} else if (square.color === this.color) {
+				moves.push(coordinates);
+				break;
+			} else {
+				break;
 			}
-			if (!axisBlocked) {
-				for (let piece of this.enemyPlayer.activePieces) {
-					if (this.currentCoordinates[1] === piece.currentCoordinates[1] && i === piece.currentCoordinates[0]) {
-						axisBlocked = true;
-						break;
-					}
-				}
-			}
+			// for (let piece of this.player.activePieces) {
+			// 	if (this.currentCoordinates[1] === piece.currentCoordinates[1] && i === piece.currentCoordinates[0]) {
+			// 		moves.push([[i, this.currentCoordinates[1]], piece]);
+			// 		axisBlocked = true;
+			// 		break;
+			// 	}
+			// }
+			// if (!axisBlocked) {
+			// 	for (let piece of this.enemyPlayer.activePieces) {
+			// 		if (this.currentCoordinates[1] === piece.currentCoordinates[1] && i === piece.currentCoordinates[0]) {
+			// 			axisBlocked = true;
+			// 			break;
+			// 		}
+			// 	}
+			// }
 		}
 
 		// Positive X and Y
 		axisBlocked = false;
 		for (let i = 1; i < 9; i++) {
-			if (this.currentCoordinates[0] + i > 8 || this.currentCoordinates[1] + i > 8) {
+			let coordinates = [this.currentCoordinates[0] + i, this.currentCoordinates[1] + i];
+			if (coordinates[0] > 8 || coordinates[1] > 8) {
+				break;
+			} 
+			let square = this.board.pieceLocations[coordinates[0]][coordinates[1]];
+
+			if (square === null) {
+				moves.push(coordinates);
+			} else if (square.color === this.color) {
+				moves.push(coordinates);
+				break;
+			} else {
 				break;
 			}
-			for (let piece of this.player.activePieces) {
-				if (this.currentCoordinates[0] + i === piece.currentCoordinates[0] && this.currentCoordinates[1] + i === piece.currentCoordinates[1]) {
-					moves.push([[this.currentCoordinates[0]+i, this.currentCoordinates[1]+i], piece]);
-					axisBlocked = true;
-					break;
-				}
-			}
-			if (!axisBlocked) {
-				for (let piece of this.enemyPlayer.activePieces) {
-					if (this.currentCoordinates[0] + i === piece.currentCoordinates[0] && this.currentCoordinates[1] + i === piece.currentCoordinates[1]) {
-						axisBlocked = true;
-						break;
-					}
+
+			// if (this.currentCoordinates[0] + i > 8 || this.currentCoordinates[1] + i > 8) {
+			// 	break;
+			// }
+			// for (let piece of this.player.activePieces) {
+			// 	if (this.currentCoordinates[0] + i === piece.currentCoordinates[0] && this.currentCoordinates[1] + i === piece.currentCoordinates[1]) {
+			// 		moves.push([[this.currentCoordinates[0]+i, this.currentCoordinates[1]+i], piece]);
+			// 		axisBlocked = true;
+			// 		break;
+			// 	}
+			// }
+			// if (!axisBlocked) {
+			// 	for (let piece of this.enemyPlayer.activePieces) {
+			// 		if (this.currentCoordinates[0] + i === piece.currentCoordinates[0] && this.currentCoordinates[1] + i === piece.currentCoordinates[1]) {
+			// 			axisBlocked = true;
+			// 			break;
+			// 		}
 					
-				}
-			}
+			// 	}
+			// }
 		}
 
 		// Positive X Negative Y
 		axisBlocked = false;
 		for (let i = 1; i < 9; i++) {
-			if (this.currentCoordinates[0] + i > 8 || this.currentCoordinates[1] - i < 1) {
+			let coordinates = [this.currentCoordinates[0] + i, this.currentCoordinates[1] - i];
+			if (coordinates[0] > 8 || coordinates[1] < 1) {
 				break;
 			}
-			for (let piece of this.player.activePieces) {
-				if (this.currentCoordinates[0] + i === piece.currentCoordinates[0] && this.currentCoordinates[1] - i === piece.currentCoordinates[1]) {
-					moves.push([[this.currentCoordinates[0]+i, this.currentCoordinates[1] - i], piece]);
-					axisBlocked = true;
-					break;
-				}
+			let square = this.board.pieceLocations[coordinates[0]][coordinates[1]];
+
+			if (square === null) {
+				moves.push(coordinates);
+			} else if (square.color === this.color) {
+				moves.push(coordinates);
+				break;
+			} else {
+				break;
 			}
-			if (!axisBlocked) {
-				for (let piece of this.enemyPlayer.activePieces) {
-					if (this.currentCoordinates[0] + i === piece.currentCoordinates[0] && this.currentCoordinates[1] - i === piece.currentCoordinates[1]) {
-						axisBlocked = true;
-						break;
-					}
+			// if (this.currentCoordinates[0] + i > 8 || this.currentCoordinates[1] - i < 1) {
+			// 	break;
+			// }
+			// for (let piece of this.player.activePieces) {
+			// 	if (this.currentCoordinates[0] + i === piece.currentCoordinates[0] && this.currentCoordinates[1] - i === piece.currentCoordinates[1]) {
+			// 		moves.push([[this.currentCoordinates[0]+i, this.currentCoordinates[1] - i], piece]);
+			// 		axisBlocked = true;
+			// 		break;
+			// 	}
+			// }
+			// if (!axisBlocked) {
+			// 	for (let piece of this.enemyPlayer.activePieces) {
+			// 		if (this.currentCoordinates[0] + i === piece.currentCoordinates[0] && this.currentCoordinates[1] - i === piece.currentCoordinates[1]) {
+			// 			axisBlocked = true;
+			// 			break;
+			// 		}
 					
-				}
-			}
+			// 	}
+			// }
 		}
 
 
 		// Negative X and Y
 		axisBlocked = false;
 		for (let i = 1; i < 9; i++) {
-			if (this.currentCoordinates[0] - i < 1 || this.currentCoordinates[1] - i < 1) {
+			let coordinates = [this.currentCoordinates[0] - i, this.currentCoordinates[1] - i];
+			if (coordinates[0] < 1 || coordinates[1] < 1) {
 				break;
 			}
-			for (let piece of this.player.activePieces) {
-				if (this.currentCoordinates[0] - i === piece.currentCoordinates[0] && this.currentCoordinates[1] - i === piece.currentCoordinates[1]) {
-					moves.push([[this.currentCoordinates[0] - i, this.currentCoordinates[1] - i], piece]);
-					axisBlocked = true;
-					break;
-				}
+			let square = this.board.pieceLocations[coordinates[0]][coordinates[1]];
+
+			if (square === null) {
+				moves.push(coordinates);
+			} else if (square.color === this.color) {
+				moves.push(coordinates);
+				break;
+			} else {
+				break;
 			}
-			if (!axisBlocked) {
-				for (let piece of this.enemyPlayer.activePieces) {
-					if (this.currentCoordinates[0] - i === piece.currentCoordinates[0] && this.currentCoordinates[1] - i === piece.currentCoordinates[1]) {
-						axisBlocked = true;
-						break;
-					}
+			// if (this.currentCoordinates[0] - i < 1 || this.currentCoordinates[1] - i < 1) {
+			// 	break;
+			// }
+			// for (let piece of this.player.activePieces) {
+			// 	if (this.currentCoordinates[0] - i === piece.currentCoordinates[0] && this.currentCoordinates[1] - i === piece.currentCoordinates[1]) {
+			// 		moves.push([[this.currentCoordinates[0] - i, this.currentCoordinates[1] - i], piece]);
+			// 		axisBlocked = true;
+			// 		break;
+			// 	}
+			// }
+			// if (!axisBlocked) {
+			// 	for (let piece of this.enemyPlayer.activePieces) {
+			// 		if (this.currentCoordinates[0] - i === piece.currentCoordinates[0] && this.currentCoordinates[1] - i === piece.currentCoordinates[1]) {
+			// 			axisBlocked = true;
+			// 			break;
+			// 		}
 					
-				}
-			}
+			// 	}
+			// }
 		}
 
 		// Negative X Positive Y
 		axisBlocked = false;
 		for (let i = 1; i < 9; i++) {
-			if (this.currentCoordinates[0] - i < 1 || this.currentCoordinates[1] + i > 8) {
+
+			let coordinates = [this.currentCoordinates[0] - i, this.currentCoordinates[1] + i];
+			if (coordinates[0] < 1 || coordinates[1] > 8) {
 				break;
 			}
-			for (let piece of this.player.activePieces) {
-				if (this.currentCoordinates[0] - i === piece.currentCoordinates[0] && this.currentCoordinates[1] + i === piece.currentCoordinates[1]) {
-					moves.push([[this.currentCoordinates[0] - i, this.currentCoordinates[1] + i], piece]);
-					axisBlocked = true;
-					break;
-				}
+			let square = this.board.pieceLocations[coordinates[0]][coordinates[1]];
+
+			if (square === null) {
+				moves.push(coordinates);
+			} else if (square.color === this.color) {
+				moves.push(coordinates);
+				break;
+			} else {
+				break;
 			}
-			if (!axisBlocked) {
-				for (let piece of this.enemyPlayer.activePieces) {
-					if (this.currentCoordinates[0] - i === piece.currentCoordinates[0] && this.currentCoordinates[1] + i === piece.currentCoordinates[1]) {
-						axisBlocked = true;
-						break;
-					}
+			// if (this.currentCoordinates[0] - i < 1 || this.currentCoordinates[1] + i > 8) {
+			// 	break;
+			// }
+			// for (let piece of this.player.activePieces) {
+			// 	if (this.currentCoordinates[0] - i === piece.currentCoordinates[0] && this.currentCoordinates[1] + i === piece.currentCoordinates[1]) {
+			// 		moves.push([[this.currentCoordinates[0] - i, this.currentCoordinates[1] + i], piece]);
+			// 		axisBlocked = true;
+			// 		break;
+			// 	}
+			// }
+			// if (!axisBlocked) {
+			// 	for (let piece of this.enemyPlayer.activePieces) {
+			// 		if (this.currentCoordinates[0] - i === piece.currentCoordinates[0] && this.currentCoordinates[1] + i === piece.currentCoordinates[1]) {
+			// 			axisBlocked = true;
+			// 			break;
+			// 		}
 					
-				}
-			}
+			// 	}
+			// }
 		}
 
 		return moves;
