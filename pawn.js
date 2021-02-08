@@ -56,7 +56,6 @@ export default class Pawn extends Piece {
 			if (square === null) {
 				continue;
 			} else {
-				debugger;
 				possibleMoves.splice(possibleMoves.indexOf(coordinate), 1)
 				break;
 			}
