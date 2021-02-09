@@ -177,7 +177,7 @@ export default class Queen extends Piece {
 		for (let i = this.currentCoordinates[1] + 1; i < 9; i++) {
 
 			let coordinates = [this.currentCoordinates[0], i];
-			let square = this.board.pieceLocations[coordinates[0]][coordinates[1]];
+			let square = this.board.pieceLocations[coordinates[0] - 1][coordinates[1] - 1];
 
 			if (square === null) {
 				moves.push(coordinates);
@@ -208,7 +208,7 @@ export default class Queen extends Piece {
 		axisBlocked = false;
 		for (let i = this.currentCoordinates[0] + 1; i < 9; i++) {
 			let coordinates = [i, this.currentCoordinates[1]];
-			let square = this.board.pieceLocations[coordinates[0]][coordinates[1]];
+			let square = this.board.pieceLocations[coordinates[0] - 1][coordinates[1] - 1];
 
 			if (square === null) {
 				moves.push(coordinates);
@@ -239,7 +239,7 @@ export default class Queen extends Piece {
 		axisBlocked = false;
 		for (let i = this.currentCoordinates[1] - 1; i > 0; i--) {
 			let coordinates = [this.currentCoordinates[0], i];
-			let square = this.board.pieceLocations[coordinates[0]][coordinates[1]];
+			let square = this.board.pieceLocations[coordinates[0] - 1][coordinates[1] - 1];
 
 			if (square === null) {
 				moves.push(coordinates);
@@ -270,7 +270,7 @@ export default class Queen extends Piece {
 		axisBlocked = false;
 		for (let i = this.currentCoordinates[0] - 1; i > 0; i--) {
 			let coordinates = [i, this.currentCoordinates[1]];
-			let square = this.board.pieceLocations[coordinates[0]][coordinates[1]];
+			let square = this.board.pieceLocations[coordinates[0] - 1][coordinates[1] - 1];
 
 			if (square === null) {
 				moves.push(coordinates);
@@ -304,7 +304,7 @@ export default class Queen extends Piece {
 			if (coordinates[0] > 8 || coordinates[1] > 8) {
 				break;
 			} 
-			let square = this.board.pieceLocations[coordinates[0]][coordinates[1]];
+			let square = this.board.pieceLocations[coordinates[0] - 1][coordinates[1] - 1];
 
 			if (square === null) {
 				moves.push(coordinates);
@@ -343,7 +343,7 @@ export default class Queen extends Piece {
 			if (coordinates[0] > 8 || coordinates[1] < 1) {
 				break;
 			}
-			let square = this.board.pieceLocations[coordinates[0]][coordinates[1]];
+			let square = this.board.pieceLocations[coordinates[0] - 1][coordinates[1] - 1];
 
 			if (square === null) {
 				moves.push(coordinates);
@@ -382,7 +382,7 @@ export default class Queen extends Piece {
 			if (coordinates[0] < 1 || coordinates[1] < 1) {
 				break;
 			}
-			let square = this.board.pieceLocations[coordinates[0]][coordinates[1]];
+			let square = this.board.pieceLocations[coordinates[0] - 1][coordinates[1] - 1];
 
 			if (square === null) {
 				moves.push(coordinates);
@@ -421,7 +421,7 @@ export default class Queen extends Piece {
 			if (coordinates[0] < 1 || coordinates[1] > 8) {
 				break;
 			}
-			let square = this.board.pieceLocations[coordinates[0]][coordinates[1]];
+			let square = this.board.pieceLocations[coordinates[0] - 1][coordinates[1] - 1];
 
 			if (square === null) {
 				moves.push(coordinates);
