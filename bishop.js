@@ -10,124 +10,126 @@ export default class Bishop extends Piece {
 		let attackingMoves = []
 
 		// Positive X and Y
-		let axisBlocked = false;
 		for (let i = 1; i < 9; i++) {
-			if (this.currentCoordinates[0] + i > 8 || this.currentCoordinates[1] + i > 8) {
+			let coordinate = [this.currentCoordinates[0] + i, this.currentCoordinates[1] + i]
+
+			if (coordinate[0] > 8 || coordinate[1] > 8) {
 				break;
 			}
 
-			let square = this.board.pieceLocations[(this.currentCoordinates[0] + i) - 1][(this.currentCoordinates[1] + i) - 1]
+			let square = this.board.pieceLocations[coordinate[0] - 1][coordinate[1] - 1]
 
 			if (square === null) {
-				possibleMoves.push([this.currentCoordinates[0]+i, this.currentCoordinates[1]+i])
+				possibleMoves.push(coordinate)
 			} else if (square.color === this.color) {
 				break;
 			} else {
-				attackingMoves.push([[this.currentCoordinates[0]+i, this.currentCoordinates[1]+i], square])
+				attackingMoves.push([coordinate, square])
 				break;
 			}
 		}
 
 		// Positive X Negative Y
-		axisBlocked = false;
 		for (let i = 1; i < 9; i++) {
-			if (this.currentCoordinates[0] + i > 8 || this.currentCoordinates[1] - i < 1) {
+			let coordinate = [this.currentCoordinates[0] + i, this.currentCoordinates[1] - i]
+
+			if (coordinate[0] > 8 || coordinate[1] < 1) {
 				break;
 			}
 
-			let square = this.board.pieceLocations[(this.currentCoordinates[0] + i) - 1][(this.currentCoordinates[1] - i) - 1]
+			let square = this.board.pieceLocations[coordinate[0] - 1][coordinate[1] - 1]
 
 			if (square === null) {
-				possibleMoves.push([this.currentCoordinates[0] + i, this.currentCoordinates[1] - i])
+				possibleMoves.push(coordinate);
 			} else if (square.color === this.color) {
 				break;
 			} else {
-				attackingMoves.push([[this.currentCoordinates[0] + i, this.currentCoordinates[1] - i], square])
+				attackingMoves.push([coordinate, square])
 				break;
 			}
-
 		}
 
 
 		// Negative X and Y
-		axisBlocked = false;
 		for (let i = 1; i < 9; i++) {
-			if (this.currentCoordinates[0] - i < 1 || this.currentCoordinates[1] - i < 1) {
+			let coordinate = [this.currentCoordinates[0] - i, this.currentCoordinates[1] - i]
+
+			if (coordinate[0] < 1 || coordinate[1] < 1) {
 				break;
 			}
 
-			let square = this.board.pieceLocations[(this.currentCoordinates[0] - i) - 1][(this.currentCoordinates[1] - i) - 1]
+			let square = this.board.pieceLocations[coordinate[0] - 1][coordinate[1] - 1]
 
 			if (square === null) {
-				possibleMoves.push([this.currentCoordinates[0] - i, this.currentCoordinates[1] - i])
+				possibleMoves.push(coordinate)
 			} else if (square.color === this.color) {
 				break;
 			} else {
-				attackingMoves.push([[this.currentCoordinates[0] - i, this.currentCoordinates[1] - i], square])
+				attackingMoves.push([coordinate, square])
 				break;
 			}
-
 		}
 
 		// Negative X Positive Y
-		axisBlocked = false;
 		for (let i = 1; i < 9; i++) {
-			if (this.currentCoordinates[0] - i < 1 || this.currentCoordinates[1] + i > 8) {
+			let coordinate = [this.currentCoordinates[0] - i, this.currentCoordinates[1] + i]
+
+			if (coordinate[0] < 1 || coordinate[1] > 8) {
 				break;
 			}
 
-			let square = this.board.pieceLocations[(this.currentCoordinates[0] - i) - 1][(this.currentCoordinates[1] + i) - 1]
+			let square = this.board.pieceLocations[coordinate[0] - 1][coordinate[1] - 1]
 
 			if (square === null) {
-				possibleMoves.push([this.currentCoordinates[0] - i, this.currentCoordinates[1] + i])
+				possibleMoves.push(coordinate)
 			} else if (square.color === this.color) {
 				break;
 			} else {
-				attackingMoves.push([[this.currentCoordinates[0] - i, this.currentCoordinates[1] + i], square])
+				attackingMoves.push([coordinate, square])
 				break;
 			}
-
 		}
+
 		return [possibleMoves, attackingMoves];
 	}
 
 	getCheckingMoves() {
 		let moves = []
 
-
 		// Positive X and Y
-		let axisBlocked = false;
 		for (let i = 1; i < 9; i++) {
-			if (this.currentCoordinates[0] + i > 8 || this.currentCoordinates[1] + i > 8) {
+			let coordinate = [this.currentCoordinates[0] + i, this.currentCoordinates[1] + i];
+
+			if (coordinate[0] > 8 || coordinate[1] > 8) {
 				break;
 			}
 
-			let square = this.board.pieceLocations[(this.currentCoordinates[0] + i) - 1][(this.currentCoordinates[1] + i) - 1]
+			let square = this.board.pieceLocations[coordinate[0] - 1][coordinate[1] - 1]
 
 			if (square === null) {
-				moves.push([this.currentCoordinates[0]+i, this.currentCoordinates[1]+i])
+				moves.push(coordinate)
 			} else if (square.color === this.color) {
-				moves.push([[this.currentCoordinates[0]+i, this.currentCoordinates[1]+i], square])
+				moves.push([coordinate, square])
 				break;
 			} else {
 				break;
 			}
-			
 		}
 
 		// Positive X Negative Y
-		axisBlocked = false;
 		for (let i = 1; i < 9; i++) {
-			if (this.currentCoordinates[0] + i > 8 || this.currentCoordinates[1] - i < 1) {
+			let coordinate = [this.currentCoordinates[0] + i, this.currentCoordinates[1] - i];
+
+			if (coordinate[0] > 8 || coordinate[1] < 1) {
 				break;
 			}
 
-			let square = this.board.pieceLocations[(this.currentCoordinates[0] + i) - 1][(this.currentCoordinates[1] - i) - 1]
+			let square = this.board.pieceLocations[coordinate[0] - 1][coordinate[1] - 1]
 
 			if (square === null) {
-				moves.push([this.currentCoordinates[0]+i, this.currentCoordinates[1] - i])
+				moves.push(coordinate)
 			} else if (square.color === this.color) {
-				moves.push([[this.currentCoordinates[0]+i, this.currentCoordinates[1] - i], square])
+				moves.push([coordinate, square])
 				break;
 			} else {
 				break;
@@ -136,18 +138,19 @@ export default class Bishop extends Piece {
 
 
 		// Negative X and Y
-		axisBlocked = false;
 		for (let i = 1; i < 9; i++) {
-			if (this.currentCoordinates[0] - i < 1 || this.currentCoordinates[1] - i < 1) {
+			let coordinate = [this.currentCoordinates[0] - i, this.currentCoordinates[1] - i];
+
+			if (coordinate[0] < 1 || coordinate[1] < 1) {
 				break;
 			}
 
-			let square = this.board.pieceLocations[(this.currentCoordinates[0] - i) - 1][(this.currentCoordinates[1] - i) - 1]
+			let square = this.board.pieceLocations[coordinate[0] - 1][coordinate[1] - 1]
 
 			if (square === null) {
-				moves.push([this.currentCoordinates[0] - i, this.currentCoordinates[1] - i])
+				moves.push(coordinate)
 			} else if (square.color === this.color) {
-				moves.push([[this.currentCoordinates[0] - i, this.currentCoordinates[1] - i], square])
+				moves.push([coordinate, square])
 				break;
 			} else {
 				break;
@@ -155,18 +158,19 @@ export default class Bishop extends Piece {
 		}
 
 		// Negative X Positive Y
-		axisBlocked = false;
 		for (let i = 1; i < 9; i++) {
-			if (this.currentCoordinates[0] - i < 1 || this.currentCoordinates[1] + i > 8) {
+			let coordinate = [this.currentCoordinates[0] - i, this.currentCoordinates[1] + i];
+
+			if (coordinate[0] < 1 || coordinate[1] > 8) {
 				break;
 			}
 
-			let square = this.board.pieceLocations[(this.currentCoordinates[0] - i) - 1][(this.currentCoordinates[1] + i) - 1]
+			let square = this.board.pieceLocations[coordinate[0] - 1][coordinate[1] - 1]
 
 			if (square === null) {
-				moves.push([this.currentCoordinates[0] - i, this.currentCoordinates[1] + i])
+				moves.push(coordinate)
 			} else if (square.color === this.color) {
-				moves.push([[this.currentCoordinates[0] - i, this.currentCoordinates[1] + i], square])
+				moves.push([coordinate, square])
 				break;
 			} else {
 				break;
