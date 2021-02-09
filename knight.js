@@ -22,28 +22,49 @@ export default class Knight extends Piece {
 		// loop backwards to not mess with splice
 		loopKnightsMoves:
 		for (let i = possibleMoves.length-1; i >= 0; i--) {
-			if ((possibleMoves[i][0] > 8) || (possibleMoves[i][0] < 1) || (possibleMoves[i][1] > 8) || (possibleMoves[i][1] < 1)) {
+
+			let coordinate = possibleMoves[i];
+
+			if ((coordinate[0] > 8) || (coordinate[0] < 1) || (coordinate[1] > 8) || (coordinate[1] < 1)) {
 				possibleMoves.splice(i, 1);
 				continue;
 			}
-			for (let piece of this.player.activePieces) {
-				if (piece.currentCoordinates[0] === possibleMoves[i][0] && piece.currentCoordinates[1] === possibleMoves[i][1]) {
-					possibleMoves.splice(i, 1);
-					continue loopKnightsMoves;
-				}
+
+			let square = this.board.pieceLocations[coordinate[0] - 1][coordinate[1] - 1];
+
+			if (square === null) {
+				continue;
+			} else if (square.color === this.color) {
+				possibleMoves.splice(i, 1);
+				continue;
+			} else {
+				attackingMoves.push([possibleMoves[i], square]);
+				possibleMoves.splice(i, 1);
+				continue;
 			}
-			for (let piece of this.enemyPlayer.activePieces) {
+			// if ((possibleMoves[i][0] > 8) || (possibleMoves[i][0] < 1) || (possibleMoves[i][1] > 8) || (possibleMoves[i][1] < 1)) {
+			// 	possibleMoves.splice(i, 1);
+			// 	continue;
+			// }
+			// for (let piece of this.player.activePieces) {
+			// 	if (piece.currentCoordinates[0] === possibleMoves[i][0] && piece.currentCoordinates[1] === possibleMoves[i][1]) {
+			// 		possibleMoves.splice(i, 1);
+			// 		continue loopKnightsMoves;
+			// 	}
+			// }
+			// for (let piece of this.enemyPlayer.activePieces) {
 				
-				if (piece.currentCoordinates[0] === possibleMoves[i][0] && piece.currentCoordinates[1] === possibleMoves[i][1]) {
-					attackingMoves.push([possibleMoves[i], piece]);
-					possibleMoves.splice(i, 1);
-					continue loopKnightsMoves;
-				}
-			}
+			// 	if (piece.currentCoordinates[0] === possibleMoves[i][0] && piece.currentCoordinates[1] === possibleMoves[i][1]) {
+			// 		attackingMoves.push([possibleMoves[i], piece]);
+			// 		possibleMoves.splice(i, 1);
+			// 		continue loopKnightsMoves;
+			// 	}
+			// }
 		}
 		return [possibleMoves, attackingMoves]
 	}	
 
+	// Returns all moves that would put an enemy king into check
 	getCheckingMoves () {
 		let moves = []
 
