@@ -1,8 +1,8 @@
 import Piece from './piece.js';
 
 export default class Rook extends Piece {
-	constructor (color, currentCoordinates, id, board, player, enemyPlayer) {
-		super(color, board.pieces.ROOK, currentCoordinates, id, board, player, enemyPlayer);
+	constructor (color, currentCoordinates, board, player, enemyPlayer) {
+		super(color, board.pieces.ROOK, currentCoordinates, board, player, enemyPlayer);
 	}
 
 	getPossibleMoves () {

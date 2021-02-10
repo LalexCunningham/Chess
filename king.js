@@ -1,8 +1,8 @@
 import Piece from './piece.js';
 
 export default class King extends Piece {
-	constructor(color, currentCoordinates, id, board, player, enemyPlayer) {
-		super(color, board.pieces.KING, currentCoordinates, id, board, player, enemyPlayer);
+	constructor(color, currentCoordinates, board, player, enemyPlayer) {
+		super(color, board.pieces.KING, currentCoordinates, board, player, enemyPlayer);
 	}
 
 	getPossibleMoves() {

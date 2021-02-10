@@ -1,8 +1,8 @@
 import Piece from './piece.js';
 
 export default class Knight extends Piece {
-	constructor (color, currentCoordinates, id, board, player, enemyPlayer) {
-		super(color, board.pieces.KNIGHT, currentCoordinates, id, board, player, enemyPlayer);
+	constructor (color, currentCoordinates, board, player, enemyPlayer) {
+		super(color, board.pieces.KNIGHT, currentCoordinates, board, player, enemyPlayer);
 	}
 
 	getPossibleMoves () {
@@ -18,7 +18,6 @@ export default class Knight extends Piece {
 		possibleMoves.push([this.currentCoordinates[0]-2, this.currentCoordinates[1]+1]);
 		possibleMoves.push([this.currentCoordinates[0]-1, this.currentCoordinates[1]+2]);
 
-		
 		// loop backwards to not mess with splice
 		loopKnightsMoves:
 		for (let i = possibleMoves.length-1; i >= 0; i--) {

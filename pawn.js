@@ -1,8 +1,8 @@
 import Piece from './piece.js';
 
 export default class Pawn extends Piece {
-	constructor(color, currentCoordinates, id, board, player, enemyPlayer) {
-		super(color, board.pieces.PAWN, currentCoordinates, id, board,  player, enemyPlayer);
+	constructor(color, currentCoordinates, board, player, enemyPlayer) {
+		super(color, board.pieces.PAWN, currentCoordinates, board,  player, enemyPlayer);
 	}
 
 	getPossibleMoves() {

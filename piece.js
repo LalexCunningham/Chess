@@ -2,10 +2,9 @@ import MovingSquare from './movingSquare.js';
 import AttackingSquare from './attackingSquare.js';
 
 export default class Piece {
-	constructor(color, piece, currentCoordinates, id, board, player, enemyPlayer) {
+	constructor(color, piece, currentCoordinates, board, player, enemyPlayer) {
 		this.board = board;
-		this.color = color;	
-		this.id = id;
+		this.color = color;
 		this.piece = piece;	
 		this.currentCoordinates = [parseInt(currentCoordinates[0]), parseInt(currentCoordinates[1])];
 		this.board.pieceLocations[this.currentCoordinates[0]-1][this.currentCoordinates[1]-1] = this;
@@ -96,7 +95,6 @@ export default class Piece {
 
 		let newElement = document.createElement('div');
 		newElement.className = `chesspiece ${this.piece} ${this.color}`;
-		newElement.id = this.id;
 		let symbol = '';
 
 		switch (this.piece) {
