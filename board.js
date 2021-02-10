@@ -23,10 +23,9 @@ export default class Board {
 					[null,null,null,null,null,null,null,null],
 					[null,null,null,null,null,null,null,null],
 					[null,null,null,null,null,null,null,null]]
-
-		this.pieceList = [];
+					
 		this.highlightedSquares = [];
-		this.highlightedPiece;
+		this.pieceList = [];
 	}
 
 	tableToChessCoordinate (coordinate) {
@@ -39,10 +38,6 @@ export default class Board {
 		let x = coordinate[0] - 1;
 		let y = 8 - coordinate[1]; 
 		return [x, y]
-	}
-
-	getPiece (element) {
-		return this.pieceList[parseInt(element.id)];
 	}
 
 	clearHighlightedSquares () {
