@@ -39,7 +39,14 @@ export default class Piece {
 				if (attackingMove[0][0] === kingCoordinates[0] &&
 					attackingMove[0][1] === kingCoordinates[1]) {
 					check = true;
-					console.log('Check!');
+					let possibleKingMoves = this.enemyPlayer.king.getPossibleMoves();
+					if (possibleKingMoves[0].length === 0 &&
+						possibleKingMoves[1].length === 0) {
+						alert('Checkmate!');
+					} else {
+						alert('Check!');
+					}
+					
 				}
 			}
 		}
