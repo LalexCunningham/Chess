@@ -107,12 +107,16 @@ export default class Bishop extends Piece {
 			let square = this.board.pieceLocations[coordinate[0] - 1][coordinate[1] - 1]
 
 			if (square === null) {
-				moves.push(coordinate)
+				moves.push(coordinate);
 			} else if (square.color === this.color) {
-				moves.push([coordinate, square])
+				moves.push(coordinate);
 				break;
 			} else {
-				break;
+				if (square.piece === this.board.pieces.KING) {
+					moves.push(coordinate);
+				} else {
+					break;					
+				}
 			}
 		}
 
@@ -129,10 +133,14 @@ export default class Bishop extends Piece {
 			if (square === null) {
 				moves.push(coordinate)
 			} else if (square.color === this.color) {
-				moves.push([coordinate, square])
+				moves.push(coordinate)
 				break;
 			} else {
-				break;
+				if (square.piece === this.board.pieces.KING) {
+					moves.push(coordinate);
+				} else {
+					break;					
+				}
 			}
 		}
 
@@ -150,10 +158,14 @@ export default class Bishop extends Piece {
 			if (square === null) {
 				moves.push(coordinate)
 			} else if (square.color === this.color) {
-				moves.push([coordinate, square])
+				moves.push(coordinate)
 				break;
 			} else {
-				break;
+				if (square.piece === this.board.pieces.KING) {
+					moves.push(coordinate);
+				} else {
+					break;					
+				}
 			}
 		}
 
@@ -170,10 +182,14 @@ export default class Bishop extends Piece {
 			if (square === null) {
 				moves.push(coordinate)
 			} else if (square.color === this.color) {
-				moves.push([coordinate, square])
+				moves.push(coordinate)
 				break;
 			} else {
-				break;
+				if (square.piece === this.board.pieces.KING) {
+					moves.push(coordinate);
+				} else {
+					break;					
+				}
 			}
 		}
 		return moves;
