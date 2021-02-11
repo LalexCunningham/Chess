@@ -113,7 +113,7 @@ export default class Bishop extends Piece {
 				break;
 			} else {
 				if (square.piece === this.board.pieces.KING) {
-					moves.push(coordinate);
+
 				} else {
 					break;					
 				}
@@ -137,7 +137,7 @@ export default class Bishop extends Piece {
 				break;
 			} else {
 				if (square.piece === this.board.pieces.KING) {
-					moves.push(coordinate);
+
 				} else {
 					break;					
 				}
@@ -162,7 +162,7 @@ export default class Bishop extends Piece {
 				break;
 			} else {
 				if (square.piece === this.board.pieces.KING) {
-					moves.push(coordinate);
+	
 				} else {
 					break;					
 				}
@@ -186,7 +186,7 @@ export default class Bishop extends Piece {
 				break;
 			} else {
 				if (square.piece === this.board.pieces.KING) {
-					moves.push(coordinate);
+
 				} else {
 					break;					
 				}
