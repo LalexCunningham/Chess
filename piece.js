@@ -13,15 +13,7 @@ export default class Piece {
 		// TODO: get rid of player classes
 		this.player = player;
 		this.enemyPlayer = enemyPlayer;
-		/*
-		if (this.color === 'white') {
-			this.player = whitePlayer;
-			this.enemyPlayer = blackPlayer;
-		} else if (this.color === 'black') {
-			this.player = blackPlayer;
-			this.enemyPlayer = whitePlayer;
-		}
-		*/
+
 		this.firstMove = true;
 	}
 
@@ -38,14 +30,33 @@ export default class Piece {
 		this.board.pieceLocations[this.currentCoordinates[0]-1][this.currentCoordinates[1]-1] = this;
 		this.firstMove = false;
 
+		let kingCoordinates = this.enemyPlayer.king.currentCoordinates;
+		let check = false;
+
+		for (let piece of this.player.activePieces) {
+			let moves = piece.getPossibleMoves()
+			for (let attackingMove of moves[1]) {
+				if (attackingMove[0][0] === kingCoordinates[0] &&
+					attackingMove[0][1] === kingCoordinates[1]) {
+					check = true;
+					console.log('Check!');
+				}
+			}
+		}
+
+		for (let piece of this.player.activePieces) {
+			piece.cssElement.removeEventListener('click', piece);
+		}
 
 		// Enemy Player's turn
-		for (let piece of this.player.activePieces) {
-			piece.cssElement.removeEventListener('click', piece)
+		if (check) {
+			this.enemyPlayer.king.setOnClick();
+		} else {
+			for (let piece of this.enemyPlayer.activePieces) {
+				piece.setOnClick();
+			}
 		}
-		for (let piece of this.enemyPlayer.activePieces) {
-			piece.setOnClick();
-		}
+
 	}
 
 	highlightMoves() {

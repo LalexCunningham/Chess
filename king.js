@@ -3,6 +3,7 @@ import Piece from './piece.js';
 export default class King extends Piece {
 	constructor(color, currentCoordinates, board, player, enemyPlayer) {
 		super(color, board.pieces.KING, currentCoordinates, board, player, enemyPlayer);
+		this.player.king = this;
 	}
 
 	getPossibleMoves() {
@@ -20,6 +21,7 @@ export default class King extends Piece {
 
 
 		// loop backwards to not mess with splice
+		loopKingsMoves:
 		for (let i = possibleMoves.length - 1; i >= 0; i--) {
 			let coordinate = possibleMoves[i];
 
@@ -27,6 +29,17 @@ export default class King extends Piece {
 				possibleMoves.splice(i, 1);
 				continue;
 			}
+
+			for (let piece of this.enemyPlayer.activePieces) {
+				for (let move of piece.getCheckingMoves()) {
+					if (coordinate[0] === move[0] &&
+						coordinate[1] === move[1]) {
+						possibleMoves.splice(i, 1);
+						continue loopKingsMoves;
+					}
+				}
+			}
+
 
 			let square = this.board.pieceLocations[coordinate[0]-1][coordinate[1]-1];
 
@@ -40,6 +53,8 @@ export default class King extends Piece {
 				possibleMoves.splice(i, 1);
 				continue;
 			}
+
+
 		}
 		return [possibleMoves, attackingMoves]
 	}
