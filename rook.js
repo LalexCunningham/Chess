@@ -89,7 +89,11 @@ export default class Rook extends Piece {
 				moves.push(coordinate);
 				break;
 			} else {
-				break;
+				if (square.piece === this.board.pieces.KING) {
+
+				} else {
+					break;					
+				}
 			}
 		}
 
@@ -105,7 +109,11 @@ export default class Rook extends Piece {
 				moves.push(coordinate);
 				break;
 			} else {
-				break;
+				if (square.piece === this.board.pieces.KING) {
+
+				} else {
+					break;					
+				}
 			}
 		}
 
@@ -121,7 +129,11 @@ export default class Rook extends Piece {
 				moves.push(coordinate);
 				break;
 			} else {
-				break;
+				if (square.piece === this.board.pieces.KING) {
+
+				} else {
+					break;					
+				}
 			}
 		}
 
@@ -137,7 +149,11 @@ export default class Rook extends Piece {
 				moves.push(coordinate);
 				break;
 			} else {
-				break;
+				if (square.piece === this.board.pieces.KING) {
+
+				} else {
+					break;					
+				}
 			}
 		}
 
