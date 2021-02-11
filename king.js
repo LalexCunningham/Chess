@@ -49,7 +49,7 @@ export default class King extends Piece {
 				possibleMoves.splice(i, 1);
 				continue;
 			} else {
-				attackingMoves.push([coordinate[i],square])
+				attackingMoves.push([coordinate ,square])
 				possibleMoves.splice(i, 1);
 				continue;
 			}
