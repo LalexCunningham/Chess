@@ -42,7 +42,7 @@ export default class Piece {
 					let possibleKingMoves = this.enemyPlayer.king.getPossibleMoves();
 					if (possibleKingMoves[0].length === 0 &&
 						possibleKingMoves[1].length === 0) {
-						alert('Checkmate!');
+						alert(`Checkmate! ${this.color} wins!`);
 					} else {
 						alert('Check!');
 					}
