@@ -23,7 +23,6 @@ export default class King extends Piece {
 		// Castling
 
 
-
 		// Remove illegal moves and add attacking moves, loop backwards to not mess with splice
 		loopKingsMoves:
 		for (let i = possibleMoves.length - 1; i >= 0; i--) {
@@ -67,14 +66,14 @@ export default class King extends Piece {
 	getCheckingMoves () {
 		let moves = [];
 
-		moves.push([[this.currentCoordinates[0], this.currentCoordinates[1] + 1], this]);
-		moves.push([[this.currentCoordinates[0] + 1, this.currentCoordinates[1] + 1], this]);
-		moves.push([[this.currentCoordinates[0] + 1, this.currentCoordinates[1]], this]);
-		moves.push([[this.currentCoordinates[0] + 1, this.currentCoordinates[1] - 1], this]);
-		moves.push([[this.currentCoordinates[0], this.currentCoordinates[1] - 1], this]);
-		moves.push([[this.currentCoordinates[0] - 1, this.currentCoordinates[1] - 1], this]);
-		moves.push([[this.currentCoordinates[0] - 1, this.currentCoordinates[1]], this]);
-		moves.push([[this.currentCoordinates[0] - 1, this.currentCoordinates[1] + 1], this]);
+		moves.push([this.currentCoordinates[0], this.currentCoordinates[1] + 1]);
+		moves.push([this.currentCoordinates[0] + 1, this.currentCoordinates[1] + 1]);
+		moves.push([this.currentCoordinates[0] + 1, this.currentCoordinates[1]]);
+		moves.push([this.currentCoordinates[0] + 1, this.currentCoordinates[1] - 1]);
+		moves.push([this.currentCoordinates[0], this.currentCoordinates[1] - 1]);
+		moves.push([this.currentCoordinates[0] - 1, this.currentCoordinates[1] - 1]);
+		moves.push([this.currentCoordinates[0] - 1, this.currentCoordinates[1]]);
+		moves.push([this.currentCoordinates[0] - 1, this.currentCoordinates[1] + 1]);
 
 		return moves;
 	}
