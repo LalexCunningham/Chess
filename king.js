@@ -4,6 +4,7 @@ export default class King extends Piece {
 	constructor(color, currentCoordinates, board, player, enemyPlayer) {
 		super(color, board.pieces.KING, currentCoordinates, board, player, enemyPlayer);
 		this.player.king = this;
+		this.check = false;
 	}
 
 	getPossibleMoves() {
@@ -19,8 +20,11 @@ export default class King extends Piece {
 		possibleMoves.push([this.currentCoordinates[0] - 1, this.currentCoordinates[1]]);
 		possibleMoves.push([this.currentCoordinates[0] - 1, this.currentCoordinates[1] + 1]);
 
+		// Castling
 
-		// loop backwards to not mess with splice
+
+
+		// Remove illegal moves and add attacking moves, loop backwards to not mess with splice
 		loopKingsMoves:
 		for (let i = possibleMoves.length - 1; i >= 0; i--) {
 			let coordinate = possibleMoves[i];

@@ -31,14 +31,14 @@ export default class Piece {
 		this.firstMove = false;
 
 		let kingCoordinates = this.enemyPlayer.king.currentCoordinates;
-		let check = false;
+		// let check = false;
 
 		for (let piece of this.player.activePieces) {
 			let moves = piece.getPossibleMoves()
 			for (let attackingMove of moves[1]) {
 				if (attackingMove[0][0] === kingCoordinates[0] &&
 					attackingMove[0][1] === kingCoordinates[1]) {
-					check = true;
+					this.enemyPlayer.king.check = true;
 					let possibleKingMoves = this.enemyPlayer.king.getPossibleMoves();
 					if (possibleKingMoves[0].length === 0 &&
 						possibleKingMoves[1].length === 0) {
@@ -56,7 +56,7 @@ export default class Piece {
 		}
 
 		// Enemy Player's turn
-		if (check) {
+		if (this.enemyPlayer.king.check) {
 			this.enemyPlayer.king.setOnClick();
 		} else {
 			for (let piece of this.enemyPlayer.activePieces) {
@@ -64,6 +64,9 @@ export default class Piece {
 			}
 		}
 
+		if(this.piece === board.pieces.KING) {
+			this.check = false;
+		} 
 	}
 
 	highlightMoves() {
