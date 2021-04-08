@@ -18,7 +18,7 @@ export default class Knight extends Piece {
 		possibleMoves.push([this.currentCoordinates[0]-2, this.currentCoordinates[1]+1]);
 		possibleMoves.push([this.currentCoordinates[0]-1, this.currentCoordinates[1]+2]);
 
-		// loop backwards to not mess with splice
+		// Remove illegal moves and add attacking moves, loop backwards to not mess with splice
 		loopKnightsMoves:
 		for (let i = possibleMoves.length-1; i >= 0; i--) {
 
