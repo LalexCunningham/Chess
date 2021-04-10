@@ -11,7 +11,7 @@ export default class Board {
 
 		this.moves = {
 			MOVE: 'move',
-			ATTACK: 'attack'
+			ATTACK: 'attack'  
 		}	
 
 		this.pieceLocations = [
@@ -47,5 +47,20 @@ export default class Board {
 		}
 		this.highlightedSquares = [];
 	}	
+
+	isOccupied(coordinate, colors) {
+		for (let piece of this.pieceList) {
+			for (let color of colors) {
+				if (piece.color === color) {
+					if (piece.currentCoordinates[0] === coordinate[0] &&
+						piece.currentCoordinates[1] === coordinate[1]) {
+						return true;
+					}
+				}
+			}
+		}
+
+		return false;
+	}
 
 }

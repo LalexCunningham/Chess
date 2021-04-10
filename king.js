@@ -10,6 +10,7 @@ export default class King extends Piece {
 	getPossibleMoves() {
 		let possibleMoves = []
 		let attackingMoves = []
+		let castlingMoves = []
 
 		possibleMoves.push([this.currentCoordinates[0], this.currentCoordinates[1] + 1]);
 		possibleMoves.push([this.currentCoordinates[0] + 1, this.currentCoordinates[1] + 1]);
@@ -21,7 +22,35 @@ export default class King extends Piece {
 		possibleMoves.push([this.currentCoordinates[0] - 1, this.currentCoordinates[1] + 1]);
 
 		// Castling
-
+		if (!this.check && this.firstMove) {
+			for (let piece of this.player.activePieces) {
+				if (piece.piece === this.board.pieces.ROOK) {
+					let pathBlocked = false;
+					if (piece.firstMove) {
+						if (piece.currentCoordinates[0] === 1) {
+							for (let i = 2; i < 5; i++) {
+								if (this.board.isOccupied([i, this.currentCoordinates[1]], ['white', 'black'])) {
+									pathBlocked = true;
+								}
+							}
+							if (!pathBlocked) {
+								castlingMoves.push([[3, this.currentCoordinates[1]], piece, [4, this.currentCoordinates[1]]])
+							}
+							
+						} else if (piece.currentCoordinates[0] === 8) {
+							for (let i = 6; i < 8; i++) {
+								if (this.board.isOccupied([i, this.currentCoordinates[1]], ['white', 'black'])) {
+									pathBlocked = true;
+								}
+							} 
+							if (!pathBlocked) {
+								castlingMoves.push([[7, this.currentCoordinates[1]], piece, [6, this.currentCoordinates[1]]])
+							}
+						}
+					}
+				}
+			}
+		}
 
 		// Remove illegal moves and add attacking moves, loop backwards to not mess with splice
 		loopKingsMoves:
@@ -59,7 +88,7 @@ export default class King extends Piece {
 
 
 		}
-		return [possibleMoves, attackingMoves]
+		return [possibleMoves, attackingMoves, castlingMoves]
 	}
 
 	// Returns all moves that would put an enemy king into check

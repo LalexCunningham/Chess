@@ -1,5 +1,6 @@
 import MovingSquare from './movingSquare.js';
 import AttackingSquare from './attackingSquare.js';
+import CastlingSquare from './castlingSquare.js'
 
 export default class Piece {
 	constructor(color, piece, currentCoordinates, board, player, enemyPlayer) {
@@ -64,7 +65,7 @@ export default class Piece {
 			}
 		}
 
-		if(this.piece === board.pieces.KING) {
+		if(this.piece === this.board.pieces.KING) {
 			this.check = false;
 		} 
 	}
@@ -73,6 +74,7 @@ export default class Piece {
 		let coordinates = this.getPossibleMoves();
 		let moveCoordinates = coordinates[0];
 		let attackCoordinates = coordinates[1];
+		
 		this.board.highlightedSquares = [];
 
 		this.board.highlightedPiece = this;
@@ -83,6 +85,16 @@ export default class Piece {
 		for (let coordinate of attackCoordinates) {
 			let attackingSquare = new AttackingSquare(coordinate[0], this.board, this, coordinate[1]);
 			this.board.highlightedSquares.push(attackingSquare);
+		}
+		try {
+			let castlingCoordinates = coordinates[2];
+			for (let coordinate of castlingCoordinates) {
+				// (coordinates, board, piece, rook, rookCoordinates)
+				let castlingSquare = new CastlingSquare(coordinate[0], this.board, this, coordinate[1], coordinate[2])
+				this.board.highlightedSquares.push(castlingSquare);
+			}
+		} catch (TypeError) {
+			// No castling moves available (either not a king or it's not allowed)
 		}
 	}
 
@@ -163,5 +175,7 @@ export default class Piece {
 		this.player.capturedPieces.push(this);
 		let index = this.player.activePieces.indexOf(this)
 		this.player.activePieces.splice(index, 1);
+		index = this.board.pieceList.indexOf(this);
+		this.board.pieceList.splice(index, 1);
 	}
 }
