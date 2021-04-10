@@ -13,9 +13,9 @@ export default class Pawn extends Piece {
 
 			if (this.currentCoordinates[1] - 1 < 2) {
 				possibleMoves =  [] // pawn can change
-			} else if (this.currentCoordinates[1] - 1 < 1|| !this.firstMove) {
+			} else if (this.currentCoordinates[1] - 1 < 1|| this.numberOfMoves > 0) {
 				possibleMoves =  [[this.currentCoordinates[0], this.currentCoordinates[1] - 1]]
-			} else if (this.firstMove){
+			} else if (this.numberOfMoves === 0){
 				possibleMoves =  [[this.currentCoordinates[0], this.currentCoordinates[1] - 1], [this.currentCoordinates[0], this.currentCoordinates[1] - 2]]
 			}
 
@@ -25,9 +25,9 @@ export default class Pawn extends Piece {
 
 			if (this.currentCoordinates[1] + 1 > 8) {
 				possibleMoves =  [] // pawn can change
-			} else if (this.currentCoordinates[1] + 1 > 7 || !this.firstMove) {
+			} else if (this.currentCoordinates[1] + 1 > 7 || this.numberOfMoves > 0) {
 				possibleMoves = [[this.currentCoordinates[0], this.currentCoordinates[1] + 1]]
-			} else if (this.firstMove) {
+			} else if (this.numberOfMoves === 0) {
 				possibleMoves = [[this.currentCoordinates[0], this.currentCoordinates[1] + 1], [this.currentCoordinates[0], this.currentCoordinates[1] + 2]]
 			}
 		}

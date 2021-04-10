@@ -22,11 +22,11 @@ export default class King extends Piece {
 		possibleMoves.push([this.currentCoordinates[0] - 1, this.currentCoordinates[1] + 1]);
 
 		// Castling
-		if (!this.check && this.firstMove) {
+		if (!this.check && this.numberOfMoves === 0) {
 			for (let piece of this.player.activePieces) {
 				if (piece.piece === this.board.pieces.ROOK) {
 					let pathBlocked = false;
-					if (piece.firstMove) {
+					if (piece.numberOfMoves === 0) {
 						if (piece.currentCoordinates[0] === 1) {
 							for (let i = 2; i < 5; i++) {
 								if (this.board.isOccupied([i, this.currentCoordinates[1]], ['white', 'black'])) {

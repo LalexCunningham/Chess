@@ -15,7 +15,7 @@ export default class Piece {
 		this.player = player;
 		this.enemyPlayer = enemyPlayer;
 
-		this.firstMove = true;
+		this.numberOfMoves = 0;
 	}
 
 	move(coordinates) {
@@ -29,7 +29,7 @@ export default class Piece {
 		
 		this.currentCoordinates = coordinates; 
 		this.board.pieceLocations[this.currentCoordinates[0]-1][this.currentCoordinates[1]-1] = this;
-		this.firstMove = false;
+		this.numberOfMoves += 1;
 
 		let kingCoordinates = this.enemyPlayer.king.currentCoordinates;
 		// let check = false;
@@ -67,7 +67,7 @@ export default class Piece {
 
 		if(this.piece === this.board.pieces.KING) {
 			this.check = false;
-		} 
+		}  
 	}
 
 	highlightMoves() {
