@@ -58,8 +58,6 @@ export default class Knight extends Piece {
 		moves.push([this.currentCoordinates[0]-2, this.currentCoordinates[1]+1]);
 		moves.push([this.currentCoordinates[0]-1, this.currentCoordinates[1]+2]);
 
-		console.log(moves);
-
 		return moves;
 	}
 }
