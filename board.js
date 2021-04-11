@@ -26,6 +26,7 @@ export default class Board {
 					
 		this.highlightedSquares = [];
 		this.pieceList = [];
+		this.enPassantVulnerable = null;
 	}
 
 	tableToChessCoordinate (coordinate) {

@@ -31,6 +31,8 @@ export default class Piece {
 		this.board.pieceLocations[this.currentCoordinates[0]-1][this.currentCoordinates[1]-1] = this;
 		this.numberOfMoves += 1;
 
+		this.board.enPassantVulnerable = null; // Possible enPassant moves no longer possible 
+
 		let kingCoordinates = this.enemyPlayer.king.currentCoordinates;
 		// let check = false;
 
@@ -65,9 +67,18 @@ export default class Piece {
 			}
 		}
 
-		if(this.piece === this.board.pieces.KING) {
+		if (this.piece === this.board.pieces.KING) {
 			this.check = false;
 		}  
+
+		if (this.piece === this.board.pieces.PAWN) {
+			if (coordinates[1] === 4  || coordinates[1] === 5) {
+				if (this.numberOfMoves === 1) {
+					this.board.enPassantVulnerable = this;
+				}
+			}
+		}
+
 	}
 
 	highlightMoves() {
