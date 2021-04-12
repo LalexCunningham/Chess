@@ -36,11 +36,11 @@ export default class Pawn extends Piece {
 		if (this.board.enPassantVulnerable != null) {
 			if (this.color === 'white' && this.currentCoordinates[1] === 5) {
 				if (Math.abs(this.currentCoordinates[0] - this.board.enPassantVulnerable.currentCoordinates[0]) === 1) {
-					attackingMoves.push([[this.board.enPassantVulnerable.currentCoordinates[0], this.board.enPassantVulnerable.currentCoordinates[1] - 1], this.board.enPassantVulnerable])
+					attackingMoves.push([[this.board.enPassantVulnerable.currentCoordinates[0], this.board.enPassantVulnerable.currentCoordinates[1] + 1], this.board.enPassantVulnerable])
 				}
 			} else if (this.color === 'black' && this.currentCoordinates[1] === 4) {
 				if (Math.abs(this.currentCoordinates[0] - this.board.enPassantVulnerable.currentCoordinates[0]) === 1) {
-					attackingMoves.push([[this.board.enPassantVulnerable.currentCoordinates[0], this.board.enPassantVulnerable.currentCoordinates[1] + 1], this.board.enPassantVulnerable])
+					attackingMoves.push([[this.board.enPassantVulnerable.currentCoordinates[0], this.board.enPassantVulnerable.currentCoordinates[1] - 1], this.board.enPassantVulnerable])
 				}
 			}
 		}
